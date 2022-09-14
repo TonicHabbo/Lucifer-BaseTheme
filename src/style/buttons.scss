@@ -1,0 +1,96 @@
+.btn {
+    border: 1px solid darken(white, 20);
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    padding: $btn-padding-y $btn-padding-x;
+    border-radius: 0.2rem;
+
+    color: color-contrast(darken(white, 15));
+
+    //box-shadow: 1px 1px rgba(white, 0.5);
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        left: 1px;
+        right: 1px;
+        z-index: -1;
+        background-color: darken(white, 15);
+    }
+
+    &::before {
+        top: calc(50%);
+        height: 1px;
+    }
+
+    &::after {
+        top: calc(50% + 2px);
+        border-radius: 0 0 0.1rem 0.1rem;
+    }
+
+    &.btn-sm {
+        //border-radius: 0.8rem;
+        padding: $btn-padding-y-sm $btn-padding-x-sm;
+        font-size: $btn-font-size-sm;
+
+        &::after {
+            //border-radius: 0 0 0.7rem 0.7rem;
+        }
+    }
+
+    &.btn-lg {
+        padding: $btn-padding-y-lg $btn-padding-x-lg;
+        font-size: $btn-font-size-lg;
+
+        border-radius: 0.3rem 0.3rem;
+
+        &::after {
+            border-radius: 0 0 0.3rem 0.3rem;
+        }
+    }
+
+    &.btn-xl {
+        padding: $btn-padding-y-lg * 2 $btn-padding-x-lg * 2;
+        font-size: $btn-font-size-lg * 2;
+
+        border-radius: 0.5rem 0.5rem;
+
+        &::after {
+            border-radius: 0 0 0.5rem 0.5rem;
+        }
+    }
+
+    &.animated {
+        animation: buttonPopIn 500ms linear;
+    }
+}
+
+@each $name, $hex in $theme-colors {
+    .btn-#{$name} {
+        background-color: $hex;
+        border-color: darken($hex, 15);
+        color: color-contrast(darken($hex, 5));
+
+        box-shadow: inset 0 0 0 1px lighten($hex, 5);
+
+        &::before,
+        &::after {
+            background-color: darken($hex, 5);
+        }
+    }
+}
+
+@keyframes buttonPopIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

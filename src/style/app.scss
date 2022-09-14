@@ -1,0 +1,71 @@
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 1020px,
+);
+
+@function get-breakpoints($key: "md") {
+    @return map-get($container-max-widths, $key);
+}
+
+$grid-columns: 4;
+$grid-gutter-width: 10px;
+
+$primary-blue: #4ccdf6;
+$primary-blue-lightened: lighten($primary-blue, 20);
+$secondary-blue: #0278b4;
+
+$off-white: #f8f0e3;
+
+$navbar-light-active-color: black;
+$navbar-light-color: $secondary-blue;
+
+$font-family-base: "UbuntuHabbo, Ubuntu Condensed";
+$theme-colors: (
+    "primary-blue": $primary-blue,
+    "secondary-blue": $secondary-blue,
+    "off-white": $off-white,
+
+    "dark-green": #01a24f,
+    "dark-red": #b51414,
+);
+
+$border-color-translucent: $secondary-blue;
+
+$enable-negative-margins: true;
+
+$input-border-width: 1px;
+$input-box-shadow: inset 0 3px rgba(black, 0.2), 1px 1px rgba(white, 0.5);
+$enable-shadows: true;
+$input-border-color: $secondary-blue;
+//$input-border-radius-sm: 0.8rem;
+$input-height-sm: unset;
+$input-padding-y-sm: 0.1rem;
+
+$btn-padding-x-sm: 0.8rem;
+$btn-padding-y-sm: 0.1rem;
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/transitions";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/utilities/api";
+
+@import "./static.scss";
+@import "./fonts.scss";
+@import "./buttons.scss";
+
+@import "./utils.scss";

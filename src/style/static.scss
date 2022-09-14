@@ -1,0 +1,178 @@
+.bg-primary-blue-gradient-radial {
+    @include gradient-radial(
+        $primary-blue-lightened,
+        var(--#{$prefix}primary-blue)
+    );
+}
+
+.base-heading {
+    position: relative;
+    background-image: url("./images/town.png"), url("./images/town2.png");
+    background-position: bottom left, bottom 5px left -10px;
+    background-repeat: repeat-x;
+    height: 350px;
+
+    transition: height 0.5s, background-position 0.5s;
+    overflow: hidden;
+    animation: moveTownUp linear 200ms;
+
+    &.minimal-heading {
+        height: 115px;
+        background-position: bottom -40px left, bottom -35px left -10px;
+
+        .hotel-img {
+            background-position: bottom -412px right;
+            animation-iteration-count: 0;
+        }
+        &::before {
+            bottom: 15px;
+        }
+    }
+
+    .hotel-img {
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        width: 722px;
+        margin: auto;
+
+        background-image: url("./images/hotel.png");
+        background-position: bottom right;
+        background-repeat: no-repeat;
+        transition: background-position 500ms;
+
+        animation: moveHotel 500ms;
+        animation-iteration-count: 1;
+        z-index: 1;
+    }
+
+    .fancy-text {
+        color: white;
+        text-shadow: -1px -1px 0 $secondary-blue, 1px -1px 0 $secondary-blue,
+            -1px 1px 0 $secondary-blue, 1px 1px 0 $secondary-blue;
+        margin: 0;
+    }
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 55px;
+        left: 0;
+        right: 0;
+        transition: bottom 500ms;
+        background-image: url("./images/sky.png");
+        background-position: bottom left;
+        background-repeat: repeat-x;
+        animation: moveSkyUp linear 450ms, moveSky linear infinite 60s;
+        z-index: -1;
+    }
+}
+
+.base-logo-absolute {
+    position: absolute;
+    bottom: calc(100% - 10px);
+    max-width: max-content;
+}
+
+.base-logo {
+    z-index: 3;
+}
+
+.base-navigation {
+    position: relative;
+    box-shadow: 0 4px 1px rgba(black, 0.2);
+}
+
+.base-sub-navigation {
+    margin-bottom: 20px;
+    transition: all 1s;
+    box-shadow: 0 4px 1px rgba(black, 0.3),
+        inset 0 4px 1px darken($secondary-blue, 5);
+
+    .nav-item {
+        animation: transitionFont linear 200ms;
+
+        font-size: 1rem;
+    }
+}
+
+.base-login-form {
+    transition: all 300ms;
+    z-index: 1;
+    top: 0;
+    transition: top 200ms linear;
+
+    &.base-login-form-hidden {
+        top: var(--bar-height);
+    }
+}
+
+.shake {
+    animation: shake 200ms infinite;
+}
+
+@keyframes moveHotel {
+    0% {
+        background-position: bottom -412px right;
+    }
+
+    100% {
+        background-position: bottom right;
+    }
+}
+
+@keyframes moveSkyUp {
+    0% {
+        bottom: -150px;
+    }
+
+    25% {
+        bottom: -150px;
+    }
+
+    100% {
+        bottom: 55px;
+    }
+}
+
+@keyframes moveTownUp {
+    0% {
+        background-position: bottom -107px left, bottom -107px left -10px;
+    }
+
+    100% {
+        background-position: bottom left, bottom 5px left -10px;
+    }
+}
+
+@keyframes moveSky {
+    0% {
+        background-position: bottom left -1440px;
+    }
+
+    100% {
+        background-position: bottom left;
+    }
+}
+
+@keyframes transitionFont {
+    0% {
+        font-size: 0rem;
+    }
+    100% {
+        font-size: 1rem;
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(10px);
+    }
+    50% {
+        transform: translateX(-10px);
+    }
+    100% {
+        transform: translateX(10px);
+    }
+}

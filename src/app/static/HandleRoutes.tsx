@@ -22,10 +22,10 @@ export default function HandleRoutes()
 
         if(!activePage || !setActive) return;
 
-        if(setActive?.children.length > 0 && setActive.children[0].path === location.pathname) return;
+        //if(setActive?.children.length > 0 && setActive.children[0].path === location.pathname) return;
 
         //if(activePage.components?.length == 0 && activePage?.children.length > 0 && setActive?.children.length > 0) navigate(setActive.children[0].path);
-    },[ fetchPages, pages, setActiveTab, activeTab, setActivePage, activePage, navigate, getParentFor ]);
+    },[ setActiveTab,setActivePage, activePage, getParentFor,navigate ]);
 
     return null;
 };

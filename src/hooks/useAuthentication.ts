@@ -7,9 +7,11 @@ const useAuthState = () =>
 
     const login = async (username: string, password: string) => 
     {
-        let result = await post<{ sso:string }>('/auth/login',{ username,password });
+        let result = await post<{ token?:string, errors:string[] }>('auth/login',{ username,password });
 
-        if(result) setToken(result.sso);
+        setToken(result.token);
+
+        return result;
     }
 
     return { login };

@@ -6,10 +6,11 @@ interface props extends ButtonHTMLAttributes<HTMLButtonElement>
 {
     variant?: string;
     size?: sizeTypes;
+    popIn?: boolean;
 }
 export default function Button(props: props)  
 {
-    const { variant=null, size = 'md', className = '', children, ...rest } = props;
+    const { variant=null, size = 'md', className = '', children, popIn = false, ...rest } = props;
 
     const getClasses = useMemo(()=>
     {
@@ -19,8 +20,10 @@ export default function Button(props: props)
 
         if(variant) classes.push('btn-' + variant);
 
+        if(popIn) classes.push('animated');
+
         return classes.join(' ')
-    },[ size,variant,className ])
+    },[ size,variant,className,popIn ])
 
     return <button className={ getClasses } { ...rest }>{ children }</button>;
 }

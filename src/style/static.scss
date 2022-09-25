@@ -14,7 +14,6 @@
 
     transition: height 0.5s, background-position 0.5s;
     overflow: hidden;
-    animation: moveTownUp linear 200ms;
 
     &.minimal-heading {
         height: 115px;
@@ -24,8 +23,9 @@
             background-position: bottom -412px right;
             animation-iteration-count: 0;
         }
+
         &::before {
-            bottom: 15px;
+            margin-bottom: -45px;
         }
     }
 
@@ -58,13 +58,14 @@
         position: absolute;
         top: 0;
         bottom: 55px;
+        margin-bottom: 0;
         left: 0;
         right: 0;
-        transition: bottom 500ms;
+        transition: bottom 500ms, margin-bottom 1s;
         background-image: url("./images/sky.png");
         background-position: bottom left;
         background-repeat: repeat-x;
-        animation: moveSkyUp linear 450ms, moveSky linear infinite 60s;
+        animation: moveSkyUp linear 1s, moveSky linear infinite 60s;
         z-index: -1;
     }
 }
@@ -100,11 +101,12 @@
 .base-login-form {
     transition: all 300ms;
     z-index: 1;
-    top: 0;
+    top: var(--bar-height);
     transition: top 200ms linear;
+    opacity: 0;
 
-    &.base-login-form-hidden {
-        top: var(--bar-height);
+    &.base-login-form-shown {
+        top: 0;
     }
 }
 
@@ -143,6 +145,30 @@
 
     100% {
         background-position: bottom left, bottom 5px left -10px;
+    }
+}
+
+@keyframes moveSkyUpMin {
+    0% {
+        bottom: -150px;
+    }
+
+    25% {
+        bottom: -150px;
+    }
+
+    100% {
+        bottom: 15px;
+    }
+}
+
+@keyframes moveTownUpMin {
+    0% {
+        background-position: bottom -107px left, bottom -107px left -10px;
+    }
+
+    100% {
+        background-position: bottom -40px left, bottom -35px left -10px;
     }
 }
 

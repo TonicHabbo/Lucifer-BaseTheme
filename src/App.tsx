@@ -7,9 +7,7 @@ import { useNavigation } from './hooks/useNavigation';
 
 export default function App() 
 {
-    const { pages, getNavigationTabs,getSubPages } = useNavigation();
-
-    if(!pages) return;
+    const { pages, getNavigationTabs,getSubPages,activePage } = useNavigation();
 
     return <>
         { pages.length > 0 && <BrowserRouter>

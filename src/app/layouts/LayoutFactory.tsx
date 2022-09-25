@@ -19,11 +19,10 @@ export default function LayoutFactory(props:props)
     {
         if(!page) return;
 
-        console.log(page);
-
-        if(!shouldRedirect(page))
-            setActivePage(page);
-    },[ setActivePage, page,shouldRedirect ]);
+        if(page.components && page.children && !page.components.length && page.children.length > 0) return setActivePage(page.children[0]);
+        
+        setActivePage(page);
+    },[ setActivePage, page ]);
 
     if(!page) return <div>fkn</div>;
 

@@ -25,7 +25,7 @@ export default function LoginForm(props:props)
     {
         let classes = [ 
             'position-absolute',
-            'py-4',
+            'py-3',
             'd-flex',
             'align-items-center',
             'base-login-form',
@@ -38,14 +38,14 @@ export default function LoginForm(props:props)
             'border-secondary-blue'
         ];
 
-        if(minimal) classes.push('base-login-form-hidden');
+        if(!minimal) classes.push('base-login-form-shown')
 
         if(errors.shake) classes.push('shake');
 
         return classes.join(' ');
     },[ minimal,errors ]);
 
-    const onSubmit = (event: FormEvent) => 
+    const onSubmit = async (event: FormEvent) => 
     {
         event.preventDefault();
         
@@ -59,7 +59,7 @@ export default function LoginForm(props:props)
         {
             setErrors(prev => 
             {
-                prev = { username: !password, password: !password, shake: true, };
+                prev = { username: !username, password: !password, shake: true, };
 
                 setTimeout(()=> setErrors(previous => 
                 {
@@ -78,7 +78,12 @@ export default function LoginForm(props:props)
             return;
         }
         
-        console.log(username,password)
+        let result = await login(username,password);
+
+        if(result.errors) 
+        {
+            return;
+        }
     };
 
 
@@ -90,7 +95,7 @@ export default function LoginForm(props:props)
         
         ref.current.setAttribute('style',`--bar-height:-${ ref.current?.offsetHeight }px;`);
 
-        //ref.current.style.height = `${ ref.current?.offsetHeight }px`;
+        ref.current.style.opacity = '1';
     },[ ref ]);
 
     return <div className={ classes } ref={ ref }>
